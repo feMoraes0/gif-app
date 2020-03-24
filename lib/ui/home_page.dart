@@ -33,6 +33,10 @@ class _HomePageState extends State<HomePage> {
     return json.decode(response.body);
   }
 
+  Widget _createGifTable(BuildContext context, AsyncSnapshot snapshot) {
+    return Container();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,6 +77,27 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+          Expanded(
+            child: FutureBuilder(
+              future: this._getSearch(),
+              builder: (context, snapshot) {
+                switch(snapshot.connectionState) {
+                  case ConnectionState.waiting:
+                    return Center(
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                        strokeWidth: 5.0,
+                      ),
+                    );
+                  default:
+                    if(snapshot.hasError)
+                      return Container();
+                    else
+                      return this._createGifTable(context, snapshot);
+                }
+              },
+            ),
+          )
         ],
       ),
     );

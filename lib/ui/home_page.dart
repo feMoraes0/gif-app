@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
           "https://api.giphy.com/v1/gifs/trending?api_key=GXnerKPsKLwJxgzPl8xNKkdHpWa6imVj&limit=20&rating=G");
     } else {
       response = await http.get(
-          "https://api.giphy.com/v1/gifs/search?api_key=GXnerKPsKLwJxgzPl8xNKkdHpWa6imVj&q=$_search&limit=20&offset=$_offset&rating=G&lang=en");
+          "https://api.giphy.com/v1/gifs/search?api_key=GXnerKPsKLwJxgzPl8xNKkdHpWa6imVj&q=$_search&limit=19&offset=$_offset&rating=G&lang=en");
     }
 
     return json.decode(response.body);
@@ -41,8 +41,36 @@ class _HomePageState extends State<HomePage> {
         crossAxisSpacing: 10.0,
         mainAxisSpacing: 10.0,
       ),
-      itemCount: snapshot.data["data"].length,
+      itemCount: (this._search == null)
+          ? snapshot.data["data"].length
+          : snapshot.data["data"].length + 1,
       itemBuilder: (context, index) {
+        if (this._search != null && index == snapshot.data["data"].length) {
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                this._offset += 19;
+              });
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon(
+                  Icons.add,
+                  color: Colors.white,
+                  size: 70,
+                ),
+                Text(
+                  "More...",
+                  style: TextStyle(
+                    fontSize: 22.0,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
         return GestureDetector(
           onTap: () {},
           child: Image.network(
@@ -62,7 +90,8 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Image.network(
-            "https://developers.giphy.com/static/img/dev-logo-lg.7404c00322a8.gif"),
+          "https://developers.giphy.com/static/img/dev-logo-lg.7404c00322a8.gif",
+        ),
         centerTitle: true,
       ),
       body: Column(
@@ -70,6 +99,12 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: TextField(
+              onSubmitted: (String value) {
+                setState(() {
+                  this._search = value;
+                  this._offset = 0;
+                });
+              },
               decoration: InputDecoration(
                 labelText: "Search",
                 labelStyle: TextStyle(

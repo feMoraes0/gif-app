@@ -34,7 +34,25 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _createGifTable(BuildContext context, AsyncSnapshot snapshot) {
-    return Container();
+    return GridView.builder(
+      padding: const EdgeInsets.all(10.0),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 10.0,
+        mainAxisSpacing: 10.0,
+      ),
+      itemCount: snapshot.data["data"].length,
+      itemBuilder: (context, index) {
+        return GestureDetector(
+          onTap: () {},
+          child: Image.network(
+            snapshot.data["data"][index]["images"]["fixed_height"]["url"],
+            height: 300,
+            fit: BoxFit.cover,
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -81,7 +99,7 @@ class _HomePageState extends State<HomePage> {
             child: FutureBuilder(
               future: this._getSearch(),
               builder: (context, snapshot) {
-                switch(snapshot.connectionState) {
+                switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
                     return Center(
                       child: CircularProgressIndicator(
@@ -90,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     );
                   default:
-                    if(snapshot.hasError)
+                    if (snapshot.hasError)
                       return Container();
                     else
                       return this._createGifTable(context, snapshot);

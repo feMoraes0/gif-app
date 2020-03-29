@@ -10,6 +10,9 @@
   <img width="250" src="prints_readme/print_005.png"/>
 </p>
 
+## Useful links
+ - [GIPHY API](https://developers.giphy.com/docs/sdk)
+
 ## How to use
 
 To clone and run this application, you'll need [Git](https://git-scm.com/downloads) and [Flutter](https://flutter.dev/docs/get-started/install) installed on your computer. From your command line:

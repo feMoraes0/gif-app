@@ -1,16 +1,36 @@
-# gif_app
+<h1 align="center">GIF App</h1>
 
-A new Flutter project.
+<p align="center">
+  <img width="250" src="prints_readme/print_001.png"/>
+  <img width="250" src="prints_readme/print_002.png"/>
+  <img width="250" src="prints_readme/print_003.png"/>
+</p>
+<p align="center">
+  <img width="250" src="prints_readme/print_004.png"/>
+  <img width="250" src="prints_readme/print_005.png"/>
+</p>
 
-## Getting Started
+## How to use
 
-This project is a starting point for a Flutter application.
+To clone and run this application, you'll need [Git](https://git-scm.com/downloads) and [Flutter](https://flutter.dev/docs/get-started/install) installed on your computer. From your command line:
 
-A few resources to get you started if this is your first Flutter project:
+```
+# Clone this repository
+$ git clone https://github.com/feMoraes0/gif-app.git
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+# Go into the repository
+$ cd gif-app
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Install dependencies
+$ flutter packages get
+
+# Run the app
+$ flutter run
+```
+
+## Credits
+ - [Udemy course created by Daniel Ciolfi](https://www.udemy.com/course/curso-completo-flutter-app-android-ios/)
+
+## Contact
+  - <a target="_blank" href="https://www.linkedin.com/in/fernando-moraes-48a26916a/">LinkedIn</a>
+  - <a target="_blank" href="mailto:fernandomoraes.lopes@gmail.com">E-mail</a>
